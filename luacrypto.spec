@@ -21,16 +21,10 @@ make %{?_smp_mflags}
 %install
 make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
 find $RPM_BUILD_ROOT -name \*.la -delete
-
+mkdir -p $RPM_BUILD_ROOT/usr/local/lib/lua/5.1/
+mv $RPM_BUILD_ROOT/usr/lib64/crypto.so $RPM_BUILD_ROOT/usr/local/lib/lua/5.1/
+rm -rf $RPM_BUILD_ROOT/usr
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 %files
-/usr/include/luacrypto/lcrypto.h
-%attr(755, -, root) /usr/lib64/crypto.so
-/usr/lib64/pkgconfig/luacrypto.pc
-%docdir /usr/share/doc/luacrypto/
-%doc /usr/share/doc/luacrypto/examples.html
-%doc /usr/share/doc/luacrypto/index.html
-%doc /usr/share/doc/luacrypto/license.html
-%doc /usr/share/doc/luacrypto/luacrypto-128.png
-%doc /usr/share/doc/luacrypto/manual.html
+%attr(755, -, root) /usr/local/lib/lua/5.1/crypto.so
