@@ -24,6 +24,8 @@ find $RPM_BUILD_ROOT -name \*.la -delete
 mkdir -p $RPM_BUILD_ROOT/usr/local/lib/lua/5.1/
 mv $RPM_BUILD_ROOT/usr/lib64/crypto.so $RPM_BUILD_ROOT/usr/local/lib/lua/5.1/
 rm -rf $RPM_BUILD_ROOT/usr/share
+rm -rf $RPM_BUILD_ROOT/usr/include
+rm -rf $RPM_BUILD_ROOT/usr/lib64
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 %files
